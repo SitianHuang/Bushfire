@@ -1,0 +1,39 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": "The cause of bushfires in Australia in the summer of 2019-2020",
+    "width": 800,
+    "height": 600,
+    "projection": {"type": "equirectangular"},
+    "data": {
+    "url": "https://github.com/SitianHuang/Bushfire/blob/4b2053573b59acd4434914ed484dc65a5b636790/fire.json",
+    "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
+    },
+    "transform": [
+    {
+    "lookup": "properties.NAME",
+    "from": {
+    "data": {
+    "url": "https://github.com/SitianHuang/Bushfire/blob/main/bushfire.csv"
+    },
+    "key": "Category",
+    "fields": ["ase28"]
+    }
+    }
+    ],
+    "mark": {"type": "geoshape"},
+    "encoding": {
+    "color": {
+    "field": "ase28",
+    "type": "quantitative",
+    "scale": {
+        "type": "threshold",
+        "domain": [10,6,28],
+        "range": ["#fd8d3c", "#e6550d", "#a63603"]
+        }
+    },
+    "tooltip": [
+    {"field": "Category", "type": "nominal", "title": "Cause of Fire"},
+    {"field": "ase28", "type": "quantitative"}
+    ]
+    }
+   }
