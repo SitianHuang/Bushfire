@@ -1,0 +1,24 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    
+    "width": 175,
+    "height": 175,
+    "data": {
+      "values": [685,309,20,7]
+    },
+    "layer": [{
+      "mark": {"type": "arc", "innerRadius": 5, "stroke": "#fff"}
+    },{
+      "mark": {"type": "text", "radiusOffset": 40},
+      "encoding": {
+        "text": {"field": "data", "type": "quantitative"}
+      }
+    }],
+    "encoding": {
+      "theta": {"field": "data", "type": "quantitative", "stack": true},
+      "radius": {"field": "data", "scale": {"type": "symlog", "zero": true}},
+      "color": {"field": "data", "type": "nominal", "scale": {
+          "domain": [685,309,20,7],
+          "range": ["#6B8D53","#C8E0C0","#7F94A9","#D8B830"]},"legend": null}
+    }
+  }
