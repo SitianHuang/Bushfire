@@ -1,0 +1,32 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+      "url": "https://raw.githubusercontent.com/SitianHuang/Bushfire/main/bushfire.csv"
+    },
+    "width":550,
+    "height":300,
+    "mark": "bar",
+    "encoding": {
+    "x": {
+      "aggregate": "count",
+      "type": "quantitative",
+      "title": "Count of Forest Category",
+      "field":"FOR_TYPE"
+    },
+    "y": {
+      "field": "FOR_TYPE",
+      "type": "nominal",
+      "title":"Forest Category"
+    },
+    "color": {
+      "field": "FOR_CAT",
+      "type": "nominal",
+      "scale": {
+        "domain": ["Native forest","Non forest","Commercial plantation","Other forest"],
+        "range": ["#6B8D53","#C8E0C0","#7F94A9","#D8B830"]
+      },
+      "title": "Forest Type"
+    },
+    "tooltip":[{"field":"FOR_CAT","aggregate":"count","type":"quantitative","title":"Count of Forest Category"}]
+  }
+}
