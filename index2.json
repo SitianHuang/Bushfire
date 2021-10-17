@@ -1,0 +1,61 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "width":400,
+        "height":300,
+        "data":{"url":"https://raw.githubusercontent.com/SitianHuang/Bushfire/main/bushfire.csv"},
+        "encoding":{
+            "x":{
+                "field":"amaxt28",
+                "type":"quantitative",
+                "title":"Average maximum temperature",
+                "axis":{"tickCount":7}
+                },
+            "y":{
+                "field":"ase28",
+                "type":"quantitative",
+                "title":"Average solar exposure",
+                "axis":{"tickCount":6}
+            }    
+        },
+        "layer":[{
+            "selection":{"cat_highlight":{"type":"multi","fields":["Category"],"bind":"legend"}},
+            "mark":"circle",
+            "encoding":{
+            "color":{
+                "field":"Category",
+                "type":"nominal",
+                "title":"Cause of Bushfires",
+                "scale":{
+                    "domain":[
+                        "accident",
+                        "burning off",
+                        "lightning"
+                    ],
+                    "range":[
+                        "#D7713A",
+                        "#75B2E7",
+                        "#F0D657" 
+                    ]
+                }
+            },
+            "opacity":{"condition":{"selection":"cat_highlight","value":0.9},"value":0},
+            "size":{"field":"aws_m1","type":"quantitative","title":"Average Wind Speed",
+            "scale":{"type": "threshold",
+            "domain":[2,3,4,5,6],"range":[0,20,40,60,80,100]}},
+            "tooltip":[
+                {"field":"Category","type":"nominal","title":"Cause"},
+                {"field":"amaxt28","type":"quantitative","title":"Average maximum temperature"},
+                {"field":"aws_m1","type":"quantitative","title":"Average wind speed"}
+            ]
+        }},
+        {
+            "mark": {
+                "type": "text",
+                "align": "right",
+                "baseline": "middle",
+                "dx": -12,
+                "fontSize": 11.5,
+                "fontStyle": "italic"
+            }
+        }]
+}
